@@ -1,0 +1,38 @@
+SELECT *
+  FROM INFORMATION_SCHEMA.COLUMNS
+
+-- extract date only from termdate and update it on the table
+SELECT CAST(LEFT(termdate, 10) AS date) AS termdate1
+FROM hr;   
+
+UPDATE hr
+SET termdate = CAST(LEFT(termdate, 23) AS DATE);
+
+ALTER TABLE hr   
+ALTER COLUMN termdate Date;
+
+SELECT *
+FROM hr;
+
+--add an 'age' column and  update it with age values
+ALTER TABLE hr 
+ADD age INT;
+
+UPDATE hr
+SET age = DATEDIFF(YEAR, birthdate, GETDATE())
+        - CASE
+		    WHEN MONTH(birthdate) > MONTH(GETDATE())
+			   OR (MONTH(birthdate) = MONTH(GETDATE()) AND DAY(birthdate) > DAY(GETDATE()))
+			THEN 1 ELSE 0
+		  END;
+
+
+-- minimum and maximum ages
+  SELECT
+	 MIN(age) AS youngest,
+	 MAX(age) AS oldest
+ FROM hr
+
+ SELECT COUNT(*) 
+ FROM [human resources].[dbo].[hr] 
+ WHERE age > 22;
