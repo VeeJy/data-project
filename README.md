@@ -1,3 +1,6 @@
+![image alt](https://github.com/user-attachments/assets/d4a7d667-6e1f-44c9-ba6e-ec2089bc1b8f)
+
+
 # Data Used
 
 **Data** - HR Data with over 22000 rows from the year 2000 to 2020.
